@@ -4,9 +4,10 @@ function cleanKey(text) {
 }
 
 // ================= LOGIN =================
+// ================= LOGIN =================
 async function login() {
     const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("password").value.trim();
 
     const errorBox = document.getElementById("error");
     errorBox.innerText = "";
@@ -15,13 +16,23 @@ async function login() {
         const snapshot = await db.ref("general/settings").once("value");
         const data = snapshot.val();
 
+        console.log("Firebase login data:", data);
+
+        // Check system data exists
         if (!data) {
             errorBox.innerText = "System not configured!";
             return;
         }
 
-        const correctEmail = data.mail;
-        const correctPassword = data.password;
+        // SAFE STRING CONVERSION (fix trim errors)
+        const correctEmail = String(data.mail ?? "").trim();
+        const correctPassword = String(data.password ?? "").trim();
+
+        // Basic validation
+        if (!correctEmail || !correctPassword) {
+            errorBox.innerText = "Login credentials missing in database!";
+            return;
+        }
 
         let emailError = "";
         let passwordError = "";
@@ -48,8 +59,10 @@ async function login() {
         document.getElementById("loginOverlay").style.display = "none";
         document.getElementById("admin").style.display = "block";
 
+        console.log("Login successful!");
+
     } catch (err) {
-        console.error(err);
+        console.error("Login error:", err);
         errorBox.innerText = "Login failed. Try again!";
     }
 }
@@ -320,30 +333,3 @@ async function saveProject() {
     document.getElementById("demoContainer").innerHTML = "";
     document.getElementById("projectForm").reset();
 }
-
-// ================= FETCH PROJECT DATA =================
-Object.keys(gridMap).forEach(category => {
-
-  const categoryRef = ref(db, `projects/${category}`);
-
-  get(categoryRef)
-    .then(snapshot => {
-
-      if (!snapshot.exists()) return;
-
-      const projects = snapshot.val();
-      const grid = gridMap[category];
-
-      Object.entries(projects).forEach(([projectName, data]) => {
-
-        data.category = category;
-
-        const card = createProjectCard(projectName, data);
-
-        grid.appendChild(card);
-        initProjectCard(card);
-      });
-
-    })
-    .catch(console.error);
-});
