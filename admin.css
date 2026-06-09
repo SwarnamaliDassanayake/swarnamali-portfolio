@@ -1,0 +1,214 @@
+/* ========== Theme ========== */
+/* Colors */
+:root {
+    --blue: #004cc5;
+    --purple: #c48cec;
+    --pink: rgb(255, 150, 255);
+    --dark-blue: #000080;
+    --black: #2c2c2c9a;
+    --gray: rgb(94, 94, 94);
+    --white: #F9FBFF;
+    --white-shadow: rgba(249, 251, 255, 0.678);
+    --black-shadow: rgba(0, 0, 0, 0.16);
+}
+
+/* Fonts */
+:root {
+    --font-tiny: 0.6rem;
+    --font-small: 0.8rem;
+    --font-base: 1rem;
+    --font-medium: 1.5rem;
+    --font-large: 2rem;
+    --font-larger: 2.6rem;
+
+    --font-normal: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-cursive: cursive;
+    --font-mono: monospace;
+
+    --font-lighter: 200;
+    --font-light: 400;
+    --font-bold: 500;
+    --font-bolder: 700;
+    --font-heavy: 800;
+}
+
+/* ========== RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-normal);
+    font-weight: var(--font-light);
+    font-size: var(--font-base);
+    color: var(--white);
+
+    background:
+        radial-gradient(circle at top, var(--purple), transparent 30%),
+        radial-gradient(circle at bottom, var(--dark-blue), transparent 45%),
+        linear-gradient(180deg, var(--blue) 0%, var(--black) 100%);
+}
+
+/* ========== LOGIN OVERLAY ========== */
+#loginOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+/* LOGIN BOX */
+.login-box {
+    width: 340px;
+    padding: 2rem;
+
+    background: var(--black);
+    border: 1px solid var(--white-shadow);
+    border-radius: 1rem;
+
+    box-shadow: 0 10px 30px var(--black-shadow);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-box h2 {
+    text-align: center;
+    font-size: var(--font-medium);
+}
+
+/* INPUTS */
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+
+    border-radius: 0.6rem;
+    border: 1px solid var(--gray);
+
+    background: transparent;
+    color: var(--white);
+
+    font-size: var(--font-base);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 10px var(--purple);
+}
+
+/* BUTTONS */
+button, .btn {
+    padding: 0.8rem 1.2rem;
+    border-radius: 999px;
+
+    background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
+    color: var(--white);
+
+    border: none;
+    cursor: pointer;
+
+    font-weight: var(--font-bolder);
+    transition: 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--purple);
+}
+
+/* ERROR */
+#error {
+    color: var(--pink);
+    font-size: var(--font-small);
+    text-align: center;
+}
+
+/* ========== ADMIN PANEL ========== */
+#admin {
+    padding: 2rem;
+}
+
+/* SECTIONS */
+section {
+    margin: 2rem auto;
+    padding: 1.5rem;
+
+    max-width: 1000px;
+
+    background: var(--black);
+    border: 1px solid var(--white-shadow);
+    border-radius: 1rem;
+
+    box-shadow: 0 8px 20px var(--black-shadow);
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+}
+
+/* FORM SPACING */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    margin-top: 1rem;
+
+    border-collapse: collapse;
+    background: transparent;
+}
+
+th, td {
+    border: 1px solid var(--gray);
+    padding: 0.8rem;
+    text-align: left;
+}
+
+th {
+    background: rgba(0,0,0,0.3);
+}
+
+/* PROJECT LIST HOVER */
+tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* HEADERS */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    section {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .login-box {
+        width: 90%;
+    }
+}
+
+#featureList li,
+#techList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}

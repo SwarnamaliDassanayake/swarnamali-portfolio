@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Swarnamali Dassanayake - Admin</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+  <!-- ================= LOGIN POPUP ================= -->
+  <div id="loginOverlay">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+
+      <button onclick="login()">Login</button>
+
+      <p id="error"></p>
+    </div>
+  </div>
+
+  <!-- ================= ADMIN PANEL ================= -->
+  <main id="admin" style="display:none;">
+
+    <header>
+      <h1>Swarnamali Dassanayake - Admin Dashboard</h1>
+    </header>
+
+<!-- ================= GENERAL SETTINGS ================= -->
+<section class="admin-section">
+  <h2>General Settings</h2>
+
+  <form id="generalSettingsForm">
+    <label id="lastupdated"></label>
+
+    <div style="display:flex; align-items:center; gap:20px;">
+
+      <!-- PROFILE IMAGE -->
+      <img id="profilePreview" src=""
+        style="width:120px;height:120px;object-fit:cover;border-radius:10px;" />
+
+      <!-- CV BUTTON -->
+      <button type="button" id="openCVBtn" class="btn">
+        View CV
+      </button>
+
+    </div>
+
+    <!-- ================= PROFILE IMAGE ================= -->
+    <label for="profileImage">Profile Image (1:1 Ratio)</label>
+    <input type="file" id="profileImage" accept="image/*">
+
+    <!-- ================= CV UPLOAD ================= -->
+    <label for="cvFile">Upload CV</label>
+ <input type="text" id="cvFile" placeholder="Google drive link">
+
+    <!-- ================= SOCIAL LINKS ================= -->
+    <label for="whatsapp">WhatsApp Profile URL</label>
+    <input type="text" id="whatsapp" placeholder="Whatsapp profile URL">
+
+    <label for="facebook">Facebook Profile URL</label>
+    <input type="text" id="facebook" placeholder="Facebook profile URL">
+
+    <label for="linkedin">LinkedIn Profile URL</label>
+    <input type="text" id="linkedin" placeholder="LinkedIn profile URL">
+
+    <label for="github">GitHub Profile URL</label>
+    <input type="text" id="github" placeholder="GitHub profile URL">
+
+    <label for="adminMail">Admin Mail</label>
+    <input type="text" id="adminMail" placeholder="Enter admin mail">
+
+    <label for="adminPassword">Admin Password</label>
+    <input type="text" id="adminPassword" placeholder="Enter admin password">
+
+    <button type="button" id="saveGeneralSettings">
+      Save Settings
+    </button>
+
+  </form>
+</section>
+
+<!-- ================= CV MODAL ================= --> 
+<div id="cvModal"
+     style="display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.85);
+            z-index:9999;">
+
+  <div style="position:relative;
+              width:85%;
+              height:92%;
+              margin:2% auto;
+              background:#fff;
+              border-radius:12px;
+              overflow:hidden;
+              box-shadow:0 10px 30px rgba(0,0,0,0.4);">
+
+    <!-- CLOSE BUTTON -->
+    <button id="closeCV"
+            style="position:absolute;
+                   top:10px;
+                   right:10px;
+                   z-index:20;
+                   padding:6px 12px;
+                   cursor:pointer;">
+      ✕
+    </button>
+
+    <!-- PDF VIEWER -->
+    <iframe id="cvFrame"
+            style="width:100%;
+                   height:100%;
+                   border:none;"
+            allow="fullscreen">
+    </iframe>
+
+  </div>
+</div>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section>
+      <h2>About Section</h2>
+
+      <h3>Skills</h3>
+      <textarea></textarea>
+
+      <h3>Experience</h3>
+      <textarea></textarea>
+
+      <h3>Education</h3>
+      <textarea></textarea>
+
+      <button>Save About</button>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section>
+
+      <h2>Projects</h2>
+
+      <div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+        <!-- ================= LEFT COLUMN ================= -->
+        <div style="flex:1; min-width:300px;">
+
+          <form id="projectForm">
+
+            <!-- CATEGORY -->
+            <label>Category</label>
+            <select id="category">
+              <option>UI Design</option>
+              <option>Web App</option>
+              <option>Mobile App</option>
+              <option>Software System</option>
+              <option>Database</option>
+              <option>Robotics</option>
+            </select>
+
+            <!-- TITLE -->
+            <label>Project Title</label>
+            <input type="text" id="title" placeholder="Enter project title">
+
+            <!-- SUBTITLE -->
+            <label>Subtitle</label>
+            <input type="text" id="subtitle" placeholder="Enter short subtitle">
+
+            <!-- DESCRIPTION -->
+            <label>Description</label>
+            <textarea id="description" placeholder="Full project description"></textarea>
+
+            <!-- ================= DEMO FILES ================= -->
+            <div>
+
+              <!-- HEADER -->
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <label style="margin:0;">Demo Files</label>
+
+                <button type="button" onclick="addDemo()">
+                  + Add New
+                </button>
+              </div>
+
+              <!-- ALL DEMO BLOCKS GO HERE -->
+              <div id="demoContainer"></div>
+
+            </div>
+            <br>
+
+            <!-- FEATURES -->
+            <label>Features</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <input type="text" id="featureInput" placeholder="Enter feature" style="flex:1;">
+              <button type="button" onclick="addFeature()">Add Feature</button>
+            </div>
+            <ul id="featureList"></ul>
+
+            <br>
+
+            <!-- TECHNOLOGIES -->
+            <label>Technologies</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <input type="text" id="techInput" placeholder="Enter technology" style="flex:1;">
+              <button type="button" onclick="addTech()">Add Tech</button>
+            </div>
+            <ul id="techList"></ul>
+
+            <br>
+
+            <!-- SAVE -->
+            <button type="button" onclick="saveProject()">Save Project</button>
+
+          </form>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div style="flex:1; min-width:300px;">
+          <h3>Project List</h3>
+          <div id="projectList"></div>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script src="admin.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfehi3batpF-DlyvI-HVtJoBBooXuC8sc",
+      authDomain: "portfolio-mali.firebaseapp.com",
+      databaseURL: "https://portfolio-mali-default-rtdb.firebaseio.com",
+      projectId: "portfolio-mali",
+      storageBucket: "portfolio-mali.firebasestorage.app",
+      messagingSenderId: "767019931608",
+      appId: "1:767019931608:web:908407842d42c01bbb84ad"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();   // MUST be global
+  </script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+
+</html>
