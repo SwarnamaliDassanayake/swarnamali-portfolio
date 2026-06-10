@@ -1473,6 +1473,7 @@
         display: flex;
         justify-content: center;
         flex-direction: row;
+        gap: 0.2rem;
     }
 
     .circle-card {
