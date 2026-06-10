@@ -130,10 +130,10 @@
 /* ========== About section ========== */
 .about-tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 2rem 0;
-    width: 100vw;
+    width: 80%;
 }
 
 .tab-btn {
