@@ -1,4 +1,3 @@
-
 /* ========== Hero Section ==========*/
 .hero {
     width: 100%;
@@ -124,17 +123,21 @@
 .social-link[href*="facebook"]:hover i {
     color: #1877f2;
 }
+
 .social-link[href*="github"]:hover i {
     color: #000000;
 }
+
 /* ========== About section ========== */
 .about-tabs {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem 0;
-    width: 80%;
-      box-sizing: border-box;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+
 }
 
 .tab-btn {
@@ -660,7 +663,7 @@
 .project-card {
     padding: 2rem;
     border-radius: 1.5rem;
-margin-bottom: 1rem;
+    margin-bottom: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
@@ -676,12 +679,12 @@ margin-bottom: 1rem;
     font-weight: var(--font-bold);
     color: var(--white-shadow);
     text-align: center;
-      font-style: italic;
+    font-style: italic;
 }
 
 .project-card h3 span {
-  font-weight: var(--font-heavy);
-  font-family: var(--font-cursive);
+    font-weight: var(--font-heavy);
+    font-family: var(--font-cursive);
     color: var(--white);
 }
 
@@ -806,7 +809,7 @@ margin-bottom: 1rem;
     right: 0;
     transform: translateY(0);
     width: 100%;
-  background:var(--black-shadow);
+    background: var(--black-shadow);
 }
 
 /* improve visibility of controls */
@@ -816,8 +819,9 @@ margin-bottom: 1rem;
 
 /* OPTIONAL: when hovered, slightly enhance visibility */
 .media-video-wrapper video:hover::-webkit-media-controls-panel {
-    background:var(--black-shadow);
+    background: var(--black-shadow);
 }
+
 /* Carousel buttons */
 .carousel-btn {
     position: absolute;
@@ -957,9 +961,11 @@ margin-bottom: 1rem;
     justify-content: center;
 
 }
+
 .media-fullscreen .close-expand-btn {
     visibility: visible;
 }
+
 .media-fullscreen.active {
     display: flex;
 }
@@ -968,17 +974,19 @@ margin-bottom: 1rem;
     width: 90vw;
     height: 90vh;
 }
-.media-fullscreen .media-carousel img{
+
+.media-fullscreen .media-carousel img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
 }
 
-.media-fullscreen .carousel-track{
+.media-fullscreen .carousel-track {
     height: 100%;
 }
-.media-fullscreen .media-carousel{
+
+.media-fullscreen .media-carousel {
     height: 100vh;
 }
 
@@ -1441,40 +1449,44 @@ margin-bottom: 1rem;
     }
 
     .media-fullscreen {
-    position: fixed;
-    inset: 0;
-    background: var(--black);
-    z-index: 9999;
+        position: fixed;
+        inset: 0;
+        background: var(--black);
+        z-index: 9999;
 
-    display: none;
-    align-items: center;
-    justify-content: center;
+        display: none;
+        align-items: center;
+        justify-content: center;
 
 
-}
-.media-fullscreen .close-expand-btn {
-    visibility: visible;
-}
-.media-fullscreen.active {
-    display: flex;
-}
+    }
 
-.media-fullscreen .project-media {
-    width: 90vw;
-    height: 90vh;
-}
-.media-fullscreen .media-carousel img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-}
+    .media-fullscreen .close-expand-btn {
+        visibility: visible;
+    }
 
-.media-fullscreen .carousel-track{
-    height: 100%;
-}
-.media-fullscreen .media-carousel{
-    height: 100vh;
-}
+    .media-fullscreen.active {
+        display: flex;
+    }
+
+    .media-fullscreen .project-media {
+        width: 90vw;
+        height: 90vh;
+    }
+
+    .media-fullscreen .media-carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .media-fullscreen .carousel-track {
+        height: 100%;
+    }
+
+    .media-fullscreen .media-carousel {
+        height: 100vh;
+    }
 
 }
