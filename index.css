@@ -131,7 +131,7 @@
 /* ========== About section ========== */
 .about-tabs {
     display: flex;
-    flex:auto;
+    flex: auto;
     justify-content: center;
     align-items: center;
 
@@ -146,14 +146,13 @@
     overflow: hidden;
 }
 
-
 .tab-btn {
     font-weight: var(--font-bolder);
     color: var(--white);
     font-style: italic;
     font-family: var(--font-mono);
     background: transparent;
-    font-size: var(--font-base);
+    font-size: var(--font-medium);
 }
 
 .tab-panel {
@@ -1396,6 +1395,15 @@
     .project-categories {
         grid-template-columns: 1fr;
 
+    }
+
+    .category-card {
+        clip-path: polygon(50% 0%,
+                100% 25%,
+                100% 90%,
+                50% 100%,
+                0% 90%,
+                0% 25%);
     }
 
     /* Contacts */
