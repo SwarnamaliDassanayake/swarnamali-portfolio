@@ -1406,6 +1406,20 @@
                 0% 25%);
     }
 
+
+    .project-card {
+        padding: 1rem;
+    }
+
+    .section-top h2 {
+        font-size: var(--font-medium) !important;
+    }
+
+    #projects,
+    #contact {
+        padding: 4rem 1rem !important;
+    }
+
     /* Contacts */
     .contact-wrapper {
         flex-direction: column;
@@ -1419,7 +1433,7 @@
     .contact-form-box {
         margin: 0 auto;
         transform: none;
-        border-radius: 10% 30% 10% 30%;
+        border-radius: 5% 20% 5% 20%;
         width: 85%;
     }
 
@@ -1451,11 +1465,17 @@
         transform: none;
     }
 
+    .contact-cards {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+    }
+
     .circle-card {
-        width: 130px;
-        height: 120px;
+        height: 120px !important;
+        width: 30% !important;
         padding: 0.5rem;
-        border-radius: 80%;
+        display: flex;
+        border-radius: 50% 2% 50% 2%;
     }
 
     /* Projects */
