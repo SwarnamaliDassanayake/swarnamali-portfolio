@@ -130,11 +130,9 @@
 /* ========== About section ========== */
 .about-tabs {
     display: flex;
-    flex: 1;
-    flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 2rem 1.5rem;
+    margin: 2rem 1rem;
 }
 
 .tab-btn {
@@ -155,7 +153,7 @@
 .about-bio {
     line-height: 1.9;
     color: var(--white);
-    font-style: oblique;
+    font-style: italic;
 }
 
 .about-education,
