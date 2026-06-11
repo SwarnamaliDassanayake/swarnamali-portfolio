@@ -1376,7 +1376,7 @@
     }
 
     /* About */
-    .about-tabs {
+    .tab-btn {
         font-size: var(--font-base) !important;
     }
 
