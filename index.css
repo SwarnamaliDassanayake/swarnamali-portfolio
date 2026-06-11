@@ -1505,17 +1505,12 @@
         justify-content: center;
     }
 
-    .media-fullscreen .close-expand-btn {
-        visibility: visible;
-    }
-
-    .media-fullscreen.active {
-        display: flex;
-    }
 
     .media-fullscreen .project-media {
-        width: 90vw;
-        height: 90vh;
+        width: 100vh;
+        height: 95vw;
+        transform: rotate(90deg);
+        object-fit: cover;
     }
 
     .media-fullscreen .media-carousel img {
