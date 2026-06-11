@@ -1375,6 +1375,11 @@
         margin-left: 6px;
     }
 
+    /* About */
+    .about-tabs {
+        font-size: var(--font-base) !important;
+    }
+
     /* About (Skills) */
     .skills-grid {
         grid-template-columns: 1fr !important;
@@ -1498,8 +1503,6 @@
         display: none;
         align-items: center;
         justify-content: center;
-
-
     }
 
     .media-fullscreen .close-expand-btn {
