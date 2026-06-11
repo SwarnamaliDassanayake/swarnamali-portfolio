@@ -119,20 +119,19 @@ function initCarousel(carousel) {
     // ================= REMOVE OLD INDICATORS =================
     indicatorContainer.querySelectorAll(".indicator").forEach(el => el.remove());
 
-    // ================= CREATE INDICATORS (FIXED) =================
+    // ================= CREATE INDICATORS =================
     images.forEach((img, i) => {
         const dot = document.createElement("span");
         dot.classList.add("indicator");
 
         if (i === 0) dot.classList.add("active");
 
-        // insert before image name
         indicatorContainer.insertBefore(dot, imageName);
 
         // click event
         dot.addEventListener("click", () => {
             scrollToIndex(track, i);
-            updateUI(indicatorContainer, imageName, images, i);
+            updateUI(indicatorContainer, imageName, images, i, prevBtn, nextBtn);
         });
     });
 
@@ -142,7 +141,7 @@ function initCarousel(carousel) {
         const newIndex = Math.max(index - 1, 0);
 
         scrollToIndex(track, newIndex);
-        updateUI(indicatorContainer, imageName, images, newIndex);
+        updateUI(indicatorContainer, imageName, images, newIndex, prevBtn, nextBtn);
     });
 
     // ================= NEXT BUTTON =================
@@ -151,18 +150,19 @@ function initCarousel(carousel) {
         const newIndex = Math.min(index + 1, images.length - 1);
 
         scrollToIndex(track, newIndex);
-        updateUI(indicatorContainer, imageName, images, newIndex);
+        updateUI(indicatorContainer, imageName, images, newIndex, prevBtn, nextBtn);
     });
 
     // ================= SCROLL SYNC =================
     track.addEventListener("scroll", () => {
         const index = getIndex(track);
-        updateUI(indicatorContainer, imageName, images, index);
+        updateUI(indicatorContainer, imageName, images, index, prevBtn, nextBtn);
     });
 
-    // initial state
-    updateUI(indicatorContainer, imageName, images, 0);
+    // ================= INITIAL STATE =================
+    updateUI(indicatorContainer, imageName, images, 0, prevBtn, nextBtn);
 }
+
 
 // ================= CAROUSEL HELPERS =================
 function getIndex(track) {
@@ -176,68 +176,100 @@ function scrollToIndex(track, index) {
     });
 }
 
-function updateUI(indicatorContainer, imageName, images, index) {
+
+// ================= UI UPDATE =================
+function updateUI(indicatorContainer, imageName, images, index, prevBtn, nextBtn) {
 
     const dots = indicatorContainer.querySelectorAll(".indicator");
 
+    // ================= INDICATORS =================
     dots.forEach((dot, i) => {
         dot.classList.toggle("active", i === index);
     });
 
+    // ================= IMAGE NAME =================
     if (images[index] && imageName) {
         imageName.textContent = images[index].alt;
     }
+
+    // ================= NAV BUTTON LOGIC =================
+
+    // If only one image → hide both
+    if (images.length <= 1) {
+        if (prevBtn) prevBtn.style.display = "none";
+        if (nextBtn) nextBtn.style.display = "none";
+        return;
+    }
+
+    // First item → only Next
+    if (index === 0) {
+        if (prevBtn) prevBtn.style.display = "none";
+        if (nextBtn) nextBtn.style.display = "flex";
+    }
+
+    // Last item → only Prev
+    else if (index === images.length - 1) {
+        if (prevBtn) prevBtn.style.display = "flex";
+        if (nextBtn) nextBtn.style.display = "none";
+    }
+
+    // Middle items → both
+    else {
+        if (prevBtn) prevBtn.style.display = "flex";
+        if (nextBtn) nextBtn.style.display = "flex";
+    }
 }
 
+
+// ================= RESET =================
 function resetCarousel(carousel) {
     const track = carousel.querySelector(".carousel-track");
     if (track) track.scrollTo({ left: 0, behavior: "smooth" });
 }
 
+
 // ================= FULLSCREEN LOGIC =================
 function initFullscreen(card) {
 
-  const media = card.querySelector(".project-media");
-  if (!media) return;
+    const media = card.querySelector(".project-media");
+    if (!media) return;
 
-  const openBtn = media.querySelector(".img-expand-btn");
-  const closeBtn = media.querySelector(".close-expand-btn");
+    const openBtn = media.querySelector(".img-expand-btn");
+    const closeBtn = media.querySelector(".close-expand-btn");
 
-  // ✅ Find the correct section fullscreen container
-  const section = card.closest(".section");
-  const fullscreenContainer = section.querySelector(".media-fullscreen");
+    const section = card.closest(".section");
+    const fullscreenContainer = section.querySelector(".media-fullscreen");
 
-  if (!openBtn || !closeBtn || !fullscreenContainer) return;
+    if (!openBtn || !closeBtn || !fullscreenContainer) return;
 
-  let originalParent = null;
-  let nextSibling = null;
+    let originalParent = null;
+    let nextSibling = null;
 
-  // ================= OPEN =================
-  openBtn.addEventListener("click", () => {
+    // ================= OPEN =================
+    openBtn.addEventListener("click", () => {
 
-    originalParent = media.parentNode;
-    nextSibling = media.nextSibling;
+        originalParent = media.parentNode;
+        nextSibling = media.nextSibling;
 
-    fullscreenContainer.classList.add("active");
-    fullscreenContainer.appendChild(media);
+        fullscreenContainer.classList.add("active");
+        fullscreenContainer.appendChild(media);
 
-    openBtn.style.display = "none";
-    closeBtn.style.display = "flex";
-  });
+        openBtn.style.display = "none";
+        closeBtn.style.display = "flex";
+    });
 
-  // ================= CLOSE =================
-  closeBtn.addEventListener("click", () => {
+    // ================= CLOSE =================
+    closeBtn.addEventListener("click", () => {
 
-    fullscreenContainer.classList.remove("active");
+        fullscreenContainer.classList.remove("active");
 
-    if (nextSibling) {
-      originalParent.insertBefore(media, nextSibling);
-    } else {
-      originalParent.appendChild(media);
-    }
+        if (nextSibling) {
+            originalParent.insertBefore(media, nextSibling);
+        } else {
+            originalParent.appendChild(media);
+        }
 
-    openBtn.style.display = "flex";
-    closeBtn.style.display = "none";
-  });
-
+        openBtn.style.display = "flex";
+        closeBtn.style.display = "none";
+    });
 }
