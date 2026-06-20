@@ -1,260 +1,979 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Swarnamali Dassanayake - Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarnamali Dassanayake</title>
+    <link rel="icon" type="image/png" href="assets/admin.png">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="admin.css">
+    <!-- SEO -->
+    <meta name="description" content="Swarnamali Dassanayake Portfolio - Software Engineer">
+    <meta name="keywords"
+        content="swarnamali dassanayake portfolio, portfolio, software engineer, java developer, web developer, swarnamali, swarnamali dassanayake, bsc, developer, php developer, fullstack engineer, fullstack developer">
+    <meta name="author" content="Swarnamali Dassanayake">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <!-- ================= LOGIN POPUP ================= -->
-  <div id="loginOverlay">
-    <div class="login-box">
-      <h2>Admin Login</h2>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home"><span class="material-icons">home</span><span class="nav-text">Home</span></a></li>
+            <li><a href="#about"><span class="material-icons">person</span><span class="nav-text">About</span></a></li>
+            <li><a href="#projects"><span class="material-icons">work</span><span class="nav-text">Projects</span></a>
+            </li>
+            <li><a href="#contact"><span class="material-icons">mail</span><span class="nav-text">Contact</span></a>
+            </li>
+        </ul>
+    </nav>
 
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
+    <div class="sections">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <p class="hero-label">Hello, I'm</p>
+                    <h1 class="hero-title" style="text-transform: uppercase;">Swarnamali Dassanayake</h1>
+                    <p class="hero-role">Full Stack Developer</p>
+                    <p class="hero-tagline">Creating modern, interactive web & mobile experiences.</p>
 
-      <button onclick="login()">Login</button>
+                    <!-- Action Buttons -->
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn section-btn" id="hireMeBtn">
+                            Hire Me
+                        </a>
+                        <a id="downloadResumeBtn" href="#" class="btn section-btn">
+                            Download Resume
+                        </a>
 
-      <p id="error"></p>
+
+                    </div>
+
+                    <!-- Social Buttons -->
+                    <div class="hero-socials">
+                        <a id="whatsappBtn" href="#" class="btn social-link" aria-label="WhatsApp" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a id="githubBtn" href="#" class="btn social-link" aria-label="GitHub" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a id="linkedinBtn" href="#" class="btn social-link" aria-label="LinkedIn" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a id="facebookBtn" href="#" class="btn social-link" aria-label="Facebook" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="hero-visual">
+                    <img id="heroImage" src="" alt="Swarnamali Dassanayake profile photo"
+                        class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+
+            <h2>About Me</h2>
+            <p class="about-bio">I'm a full-stack software engineer with a completed BSc (Hons) in Software Engineering
+                (official certificate pending issuance) and practical experience in designing and developing software,
+                web, and mobile applications. I enjoy collaborating with teams and quickly adapting to new technologies
+                through continuous learning. I'm passionate about creating innovative, efficient, and user-friendly
+                solutions that make a positive impact on people's lives better.</p>
+
+            <div class="about-tabs">
+                <button class="btn tab-btn active" data-tab="skills">Skills</button>
+                <button class="btn tab-btn" data-tab="experience">Experience</button>
+                <button class="btn tab-btn" data-tab="education">Education</button>
+            </div>
+
+            <div class="about-content">
+
+                <div class="tab-panel active" id="skills">
+                    <div class="about-skills">
+                        <div class="skills-grid">
+
+                            <!-- Tools & Environment -->
+                            <div class="skill-card">
+                                <h4>
+                                    <span class="material-icons">draw</span>
+                                    Tools & Environmental
+                                </h4>
+                                <ul>
+                                    <!-- Figma -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Figma
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 91%;"></div>
+                                            <span class="progress-text">91%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- VS Code -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            VS Code
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Android Studio -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Android Studio
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 90%;"></div>
+                                            <span class="progress-text">90%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- NetBeans -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            NetBeans
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 97%;"></div>
+                                            <span class="progress-text">97%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Arduino -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Arduino
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 97%;"></div>
+                                            <span class="progress-text">97%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- GitHub -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            GitHub
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 89%;"></div>
+                                            <span class="progress-text">89%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Install4j 10 -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Install4j 10
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 70%;"></div>
+                                            <span class="progress-text">70%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Language4j -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Language4j
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 56%;"></div>
+                                            <span class="progress-text">56%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- XAMPP -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            XAMPP
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 95%;"></div>
+                                            <span class="progress-text">95%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- HeidiSQL -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            HeidiSQL
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- MySQL Workbench -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            MySQL Workbench
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <!-- UI/UX -->
+                            <div class="skill-card">
+                                <h4>
+                                    <span class="material-icons">palette</span>
+                                    UI/UX Design & Development
+                                </h4>
+                                <ul>
+
+                                    <!-- HTML -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            HTML
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                            <span class="progress-text">100%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Custom CSS -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Custom CSS
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                            <span class="progress-text">100%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- CSS Frameworks -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            CSS Frameworks
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 97%;"></div>
+                                            <span class="progress-text">97%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- JavaScript -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            JavaScript
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 97%;"></div>
+                                            <span class="progress-text">97%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- TypeScript -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            TypeScript
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- React Native -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            React Native
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 89%;"></div>
+                                            <span class="progress-text">89%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Wireframing -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Wireframing
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                            <span class="progress-text">100%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Responsive Design -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Responsive Design
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Interaction Design -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Interaction Design
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <!-- Backend -->
+                            <div class="skill-card">
+                                <h4>
+                                    <span class="material-icons">terminal</span>
+                                    Backend & Programming
+                                </h4>
+
+                                <ul>
+
+                                    <!-- PHP -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            PHP
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 97%;"></div>
+                                            <span class="progress-text">97%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Node.js -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Node.js
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 86%;"></div>
+                                            <span class="progress-text">86%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- C++ -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            C++
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 91%;"></div>
+                                            <span class="progress-text">91%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Hibernate -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Hibernate
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 94%;"></div>
+                                            <span class="progress-text">94%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- SQL -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            SQL
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 97%;"></div>
+                                            <span class="progress-text">97%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- API Integration -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            API Integration
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 89%;"></div>
+                                            <span class="progress-text">89%</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <!-- Database -->
+                            <div class="skill-card">
+                                <h4>
+                                    <span class="material-icons">storage</span>
+                                    Database Management
+                                </h4>
+
+                                <ul>
+
+                                    <!-- MySQL -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            MySQL
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 91%;"></div>
+                                            <span class="progress-text">91%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Firebase -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Firebase
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 89%;"></div>
+                                            <span class="progress-text">89%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- MongoDB -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            MongoDB
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 84%;"></div>
+                                            <span class="progress-text">84%</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <!-- AI & Modern Skills -->
+                            <div class="skill-card">
+                                <h4>
+                                    <span class="material-icons">psychology</span>
+                                    Smart Development Skills
+                                </h4>
+
+                                <ul>
+
+                                    <!-- AI Tools & Prompt Engineering -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            AI Tools & Prompt Engineering
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                            <span class="progress-text">100%</span>
+                                        </div>
+                                    </li>
+
+                                    <!-- Problem Solving -->
+                                    <li>
+                                        <span class="skill-text">
+                                            <span class="material-icons">chevron_right</span>
+                                            Problem Solving & Practically Solutions
+                                        </span>
+                                        <div class="progress-box">
+                                            <div class="progress-bar" style="width: 88%;"></div>
+                                            <span class="progress-text">88%</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="experience">
+                    <div class="about-work">
+                        <div class="work-grid">
+                            <!-- Internship 1 (Completed) -->
+                            <article class="experience-card section-card">
+                                <div class="experience-header">
+
+                                    <div class="experience-title">
+                                        <h4>Web Developer Intern</h4>
+                                        <a href="https://digitrans.lk/" target="_blank" class="company-link">
+                                            <span class="material-icons">language</span>
+                                            Digitrans
+                                        </a>
+                                    </div>
+
+                                    <p class="year-range">
+                                        July 2025 – January 2026
+                                    </p>
+                                </div>
+
+                                <ul class="experience-tech">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>PHP</li>
+                                    <li>MySQL</li>
+                                </ul>
+
+                                <ul class="experience-list">
+                                    <li>Developed School Alumni Association system</li>
+                                    <li>Built Hotel Reception frontend interface</li>
+                                    <li>Worked on responsive UI design</li>
+                                    <li>Collaborated in team development environment</li>
+                                </ul>
+
+                                <p class="experience-note">
+                                    Projects were internal and not publicly deployed.
+                                </p>
+                            </article>
+
+                            <!-- Internship 2 (Ongoing) -->
+                            <article class="experience-card section-card">
+                                <div class="experience-header">
+
+                                    <div class="experience-title">
+                                        <h4>Web Developer Intern</h4>
+                                        <a href="https://esupport.live/" target="_blank" class="company-link">
+                                            <span class="material-icons">language</span> eSupport
+                                        </a>
+                                    </div>
+
+                                    <p class="year-range">
+                                        April 2026 – Present
+                                    </p>
+                                </div>
+
+                                <ul class="experience-tech">
+                                    <li>Laravel</li>
+                                    <li>PHP</li>
+                                    <li>MySQL</li>
+                                    <li>APIs</li>
+                                </ul>
+
+                                <ul class="experience-list">
+                                    <li>Working with Laravel MVC structure</li>
+                                    <li>Developing backend features & APIs</li>
+                                    <li>Database integration & optimization</li>
+                                    <li>Learning enterprise-level development workflow</li>
+                                </ul>
+
+                                <p class="experience-note">
+                                    Currently active internship (learning in progress).
+                                </p>
+                            </article>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="education">
+                    <div class="about-education">
+                        <div class="education-grid">
+                            <article class="education-card section-card">
+                                <div class="education-card-header">
+                                    <div class="education-images" style="display: flex;">
+                                        <img src="assets/BCU.jpg" alt="BSc Image 1"
+                                            style="width:70px; height: 70px; border-radius:5px;">
+                                        <img src="assets/jiat.png" alt="BSc Image 2"
+                                            style="width:auto; height: 80px; border-radius:5px;">
+                                    </div>
+                                    <div>
+                                        <h4>Bachelor of Science (Hons) in Software Engineering</h4>
+                                        <p class="education-subtitle">
+                                            Java Institute Sri Lanka (Embedded With Birmingham City University, UK).
+                                            <br><span class="year-range">2022 - 2026</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="education-description">
+                                    Focused on Fullstack development, Android, and web apps.
+                                </p>
+                            </article>
+                            <article class="education-card section-card">
+                                <div class="education-card-header">
+                                    <img src="assets/DTET.jpg" alt="Electrician"
+                                        style="width:50px; height:auto; border-radius:5px; margin-right:0.8rem;">
+                                    <div>
+                                        <h4>Domestic Electrician (NVQ Level 3)</h4>
+                                        <p class="education-subtitle">Technical College, Matale. <br><span
+                                                class="year-range">2024</span></p>
+                                    </div>
+                                </div>
+                                <p class="education-description">
+                                    Hands-on training in electrical installations and safety.
+                                </p>
+                            </article>
+                            <article class="education-card section-card">
+                                <div class="education-card-header">
+                                    <img src="assets/BritishCouncil.png" alt="English Certificate"
+                                        style="width:auto; height: 50px; border-radius:5px; margin-right:0.8rem;">
+                                    <div>
+                                        <h4>Certified in English Language</h4>
+                                        <p class="education-subtitle">British Council - Sri Lanka. <br><span
+                                                class="year-range">2019</span></p>
+                                    </div>
+                                </div>
+                                <p class="education-description">
+                                    Proficient in academic and professional communication.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2>Projects</h2>
+            <div class="project-categories">
+
+                <a href="#ui" class="category-card">
+                    <span class="material-icons">palette</span>
+                    <h3>UI/UX & Frontend Design</h3>
+                    <p>Visually appealing and user-friendly interfaces focused on smooth interaction and modern design
+                        principles.</p>
+                </a>
+
+                <a href="#web" class="category-card">
+                    <span class="material-icons">web</span>
+                    <h3>Web Applications</h3>
+                    <p>Applications that run directly in web browsers, allowing users to access services online without
+                        installation.</p>
+                </a>
+
+                <a href="#software" class="category-card">
+                    <span class="material-icons">laptop</span>
+                    <h3>Software Applications</h3>
+                    <p>Desktop systems designed to perform complex tasks, manage data, and support business operations.
+                    </p>
+                </a>
+
+                <a href="#mobile" class="category-card">
+                    <span class="material-icons">phone_android</span>
+                    <h3>Mobile Applications</h3>
+                    <p>Android apps designed for smartphones, offering smooth performance, interactive UI, and real-time
+                        features.</p>
+                </a>
+
+                <a href="#database" class="category-card">
+                    <span class="material-icons">storage</span>
+                    <h3>Database Systems</h3>
+                    <p>Structured data system design and database management that ensures efficiency, security, and
+                        scalability.</p>
+                </a>
+
+                <a href="#robotics" class="category-card">
+                    <span class="material-icons">smart_toy</span>
+                    <h3>Hardware & Robotics</h3>
+                    <p> Builds intelligent real-world systems by collaborating with electronics, sensors, and software
+                        tools.
+                    </p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Siingle-Projects  -->
+        <!-- UI/UX section-->
+        <section class="section" id="ui">
+            <div class="media-fullscreen">
+
+            </div>
+
+            <div class="section-top">
+                <a href="#projects" id="back-btn" class="btn back-btn"><span
+                        class="material-icons">arrow_back</span></a>
+                <h2>UI/UX & Frontend Design</h2>
+            </div>
+
+            <div class="project-grid" id="uiGrid"></div>
+
+        </section>
+
+        <!-- Web Applications section-->
+        <section class="section" id="web">
+            <div class="media-fullscreen">
+
+            </div>
+            <div class="section-top">
+                <a href="#projects" id="back-btn" class="btn back-btn"><span
+                        class="material-icons">arrow_back</span></a>
+                <h2>Web Applications</h2>
+            </div>
+
+            <div class="project-grid" id="webGrid"></div>
+        </section>
+
+        <!-- Software Applications section-->
+        <section class="section" id="software">
+            <div class="media-fullscreen">
+
+            </div>
+
+            <div class="section-top">
+                <a href="#projects" id="back-btn" class="btn back-btn"><span
+                        class="material-icons">arrow_back</span></a>
+                <h2>Software Applications</h2>
+            </div>
+
+            <div class="project-grid" id="softwareGrid"></div>
+        </section>
+
+        <!--<Mobile Applications section-->
+        <section class="section" id="mobile">
+
+            <div class="media-fullscreen">
+
+            </div>
+
+            <div class="section-top">
+                <a href="#projects" id="back-btn" class="btn back-btn"><span
+                        class="material-icons">arrow_back</span></a>
+                <h2>Mobile Applications</h2>
+            </div>
+
+            <div class="project-grid" id="mobileGrid"></div>
+        </section>
+
+        <!-- Database Systems section-->
+        <section class="section" id="database">
+
+            <div class="media-fullscreen">
+
+            </div>
+
+            <div class="section-top">
+                <a href="#projects" id="back-btn" class="btn back-btn"><span
+                        class="material-icons">arrow_back</span></a>
+                <h2>Database Systems</h2>
+            </div>
+
+            <div class="project-grid" id="databaseGrid"></div>
+        </section>
+
+        <!-- Hardware & Robotics section-->
+        <section class="section" id="robotics">
+            <div class="media-fullscreen">
+
+            </div>
+            <div class="section-top">
+                <a href="#projects" id="back-btn" class="btn back-btn"><span
+                        class="material-icons">arrow_back</span></a>
+                <h2>Hardware & Robotics</h2>
+            </div>
+
+            <div class="project-grid" id="roboticsGrid"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+
+            <h2>Contact Me</h2>
+            <p class="section-subtitle">Let’s build something amazing together...</p>
+
+            <div class="contact-wrapper">
+
+
+                <!-- Round Info Cards -->
+                <div class="contact-cards">
+
+                    <div class="circle-card section-card">
+                        <h4>
+                            <span class="material-icons">mail</span>
+                        </h4>
+                        <p>maalipsd@gmail.com</p>
+                    </div>
+
+                    <div class="circle-card section-card">
+                        <h4>
+                            <span class="material-icons">phone</span>
+                        </h4>
+                        <p>+94 716 192 570</p>
+                    </div>
+
+                    <div class="circle-card section-card">
+                        <h4>
+                            <span class="material-icons">location_on</span>
+                        </h4>
+                        <p>No. 237/3, Kandy Road, Alawathugoda.</p>
+                    </div>
+
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-box">
+
+                    <h3><span class="material-icons">send</span> Get in Touch</h3>
+
+                    <form class="contact-form" id="contactForm">
+
+                        <div class="input-box">
+                            <span class="material-icons">person</span>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="material-icons">mail</span>
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="material-icons">subject</span>
+                            <input type="text" id="subject" placeholder="Subject" required>
+                        </div>
+
+                        <div class="input-box textarea">
+                            <span class="material-icons">edit</span>
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="section-btn btn" style="max-width: 80%;">
+                            <span class="material-icons">send</span> Send Message
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </section>
+
     </div>
-  </div>
 
-  <!-- ================= ADMIN PANEL ================= -->
-  <main id="admin" style="display:none;">
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
 
-    <header>
-      <h1>Swarnamali Dassanayake - Admin Dashboard</h1>
-    </header>
+        <!-- TOP ROW -->
+        <div class="footer-top">
 
-<!-- ================= GENERAL SETTINGS ================= -->
-<section class="admin-section">
-  <h2>General Settings</h2>
-
-  <form id="generalSettingsForm">
-    <label id="lastupdated"></label>
-
-    <div style="display:flex; align-items:center; gap:20px;">
-
-      <!-- PROFILE IMAGE -->
-      <img id="profilePreview" src=""
-        style="width:120px;height:120px;object-fit:cover;border-radius:10px;" />
-
-      <!-- CV BUTTON -->
-      <button type="button" id="openCVBtn" class="btn">
-        View CV
-      </button>
-
-    </div>
-
-    <!-- ================= PROFILE IMAGE ================= -->
-    <label for="profileImage">Profile Image (1:1 Ratio)</label>
-    <input type="file" id="profileImage" accept="image/*">
-
-    <!-- ================= CV UPLOAD ================= -->
-    <label for="cvFile">Upload CV</label>
- <input type="text" id="cvFile" placeholder="Google drive link">
-
-    <!-- ================= SOCIAL LINKS ================= -->
-    <label for="whatsapp">WhatsApp Profile URL</label>
-    <input type="text" id="whatsapp" placeholder="Whatsapp profile URL">
-
-    <label for="facebook">Facebook Profile URL</label>
-    <input type="text" id="facebook" placeholder="Facebook profile URL">
-
-    <label for="linkedin">LinkedIn Profile URL</label>
-    <input type="text" id="linkedin" placeholder="LinkedIn profile URL">
-
-    <label for="github">GitHub Profile URL</label>
-    <input type="text" id="github" placeholder="GitHub profile URL">
-
-    <label for="adminMail">Admin Mail</label>
-    <input type="text" id="adminMail" placeholder="Enter admin mail">
-
-    <label for="adminPassword">Admin Password</label>
-    <input type="text" id="adminPassword" placeholder="Enter admin password">
-
-    <button type="button" id="saveGeneralSettings">
-      Save Settings
-    </button>
-
-  </form>
-</section>
-
-<!-- ================= CV MODAL ================= --> 
-<div id="cvModal"
-     style="display:none;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,0.85);
-            z-index:9999;">
-
-  <div style="position:relative;
-              width:85%;
-              height:92%;
-              margin:2% auto;
-              background:#fff;
-              border-radius:12px;
-              overflow:hidden;
-              box-shadow:0 10px 30px rgba(0,0,0,0.4);">
-
-    <!-- CLOSE BUTTON -->
-    <button id="closeCV"
-            style="position:absolute;
-                   top:10px;
-                   right:10px;
-                   z-index:20;
-                   padding:6px 12px;
-                   cursor:pointer;">
-      ✕
-    </button>
-
-    <!-- PDF VIEWER -->
-    <iframe id="cvFrame"
-            style="width:100%;
-                   height:100%;
-                   border:none;"
-            allow="fullscreen">
-    </iframe>
-
-  </div>
-</div>
-
-    <!-- ================= ABOUT SECTION ================= -->
-    <section>
-      <h2>About Section</h2>
-
-      <h3>Skills</h3>
-      <textarea></textarea>
-
-      <h3>Experience</h3>
-      <textarea></textarea>
-
-      <h3>Education</h3>
-      <textarea></textarea>
-
-      <button>Save About</button>
-    </section>
-
-    <!-- ================= PROJECTS ================= -->
-    <section>
-
-      <h2>Projects</h2>
-
-      <div style="display:flex; gap:20px; flex-wrap:wrap;">
-
-        <!-- ================= LEFT COLUMN ================= -->
-        <div style="flex:1; min-width:300px;">
-
-          <form id="projectForm">
-
-            <!-- CATEGORY -->
-            <label>Category</label>
-            <select id="category">
-              <option>UI Design</option>
-              <option>Web App</option>
-              <option>Mobile App</option>
-              <option>Software System</option>
-              <option>Database</option>
-              <option>Robotics</option>
-            </select>
-
-            <!-- TITLE -->
-            <label>Project Title</label>
-            <input type="text" id="title" placeholder="Enter project title">
-
-            <!-- SUBTITLE -->
-            <label>Subtitle</label>
-            <input type="text" id="subtitle" placeholder="Enter short subtitle">
-
-            <!-- DESCRIPTION -->
-            <label>Description</label>
-            <textarea id="description" placeholder="Full project description"></textarea>
-
-            <!-- ================= DEMO FILES ================= -->
-            <div>
-
-              <!-- HEADER -->
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <label style="margin:0;">Demo Files</label>
-
-                <button type="button" onclick="addDemo()">
-                  + Add New
-                </button>
-              </div>
-
-              <!-- ALL DEMO BLOCKS GO HERE -->
-              <div id="demoContainer"></div>
-
+            <div class="btn ai-btn">
+                <img src="assets/admin.png" alt="ai-icon">
             </div>
-            <br>
 
-            <!-- FEATURES -->
-            <label>Features</label>
-            <div style="display:flex; gap:10px; align-items:center;">
-              <input type="text" id="featureInput" placeholder="Enter feature" style="flex:1;">
-              <button type="button" onclick="addFeature()">Add Feature</button>
+            <div class="footer-contact">
+                <a href="https://wa.me/94716192570" class="social-link" aria-label="WhatsApp" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://github.com/SwarnamaliDassanayake" class="social-link" aria-label="GitHub"
+                    target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/swarnamali-dassanayake-b97639226" class="social-link"
+                    aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100094214378008" class="social-link"
+                    aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
             </div>
-            <ul id="featureList"></ul>
 
-            <br>
-
-            <!-- TECHNOLOGIES -->
-            <label>Technologies</label>
-            <div style="display:flex; gap:10px; align-items:center;">
-              <input type="text" id="techInput" placeholder="Enter technology" style="flex:1;">
-              <button type="button" onclick="addTech()">Add Tech</button>
+            <div class="footer-brand">
+                Powered by
+                <img src="./assets/logo.png" alt="BIGMATE Logo">
             </div>
-            <ul id="techList"></ul>
-
-            <br>
-
-            <!-- SAVE -->
-            <button type="button" onclick="saveProject()">Save Project</button>
-
-          </form>
-
         </div>
 
-        <!-- RIGHT -->
-        <div style="flex:1; min-width:300px;">
-          <h3>Project List</h3>
-          <div id="projectList"></div>
+        <!-- BOTTOM ROW -->
+        <div class="footer-bottom">
+            <div class="copyright">
+                <a href="admin.html">&copy; 2026</a> Swarnamali Dassanayake &bull; BSc (Hons) Software Engineering
+                &bull; BIGMATE &bull; All Rights Reserved.
+            </div>
         </div>
 
-      </div>
+    </footer>
 
-    </section>
-  </main>
+    <script src="script.js"></script>
+    <script type="module" src="projects.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        emailjs.init("vlh9616SxSvojd0cW");
+    </script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
 
-  <script src="admin.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDfehi3batpF-DlyvI-HVtJoBBooXuC8sc",
-      authDomain: "portfolio-mali.firebaseapp.com",
-      databaseURL: "https://portfolio-mali-default-rtdb.firebaseio.com",
-      projectId: "portfolio-mali",
-      storageBucket: "portfolio-mali.firebasestorage.app",
-      messagingSenderId: "767019931608",
-      appId: "1:767019931608:web:908407842d42c01bbb84ad"
-    };
+            const params = {
+                from_name: document.getElementById("name").value,
+                from_email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value,
+            };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();   // MUST be global
-  </script>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+            emailjs.send("service_xxjx28r", "template_bzzzbkz",
+
+                params
+            ).then(() => {
+                alert("Message sent successfully!");
+                document.getElementById("contactForm").reset();
+            }).catch((error) => {
+                alert("Failed to send message!");
+                console.error(error);
+            });
+        });
+    </script>
 </body>
 
 </html>
