@@ -14,6 +14,58 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+// ================= SETTINGS =================
+loadGeneralSettings();
+
+async function loadGeneralSettings() {
+  try {
+
+    const snapshot = await get(
+      ref(db, "general/settings")
+    );
+
+    if (!snapshot.exists()) return;
+
+    const settings = snapshot.val();
+
+    // Hero Image
+    if (settings.profileImage) {
+      document.getElementById("heroImage").src =
+        settings.profileImage;
+    }
+
+    // CV Download
+    if (settings.cvFile) {
+   document.getElementById("downloadResumeBtn").href =
+      settings.cvFile;
+    }
+
+    // Social Links
+    if (settings.whatsapp) {
+      document.getElementById("whatsappBtn").href =
+        settings.whatsapp;
+    }
+
+    if (settings.github) {
+      document.getElementById("githubBtn").href =
+        settings.github;
+    }
+
+    if (settings.linkedin) {
+      document.getElementById("linkedinBtn").href =
+        settings.linkedin;
+    }
+
+    if (settings.facebook) {
+      document.getElementById("facebookBtn").href =
+        settings.facebook;
+    }
+
+  } catch (error) {
+    console.error("Settings Load Error:", error);
+  }
+}
+
 // ================= CLOUDINARY FIX =================
 function fixCloudinaryVideo(url) {
   if (!url) return url;
@@ -237,55 +289,3 @@ function initProjectCard(projectMedia) {
   initFullscreen(projectMedia);
 }
 
-// ================= SETTINGS =================
-loadGeneralSettings();
-
-async function loadGeneralSettings() {
-  try {
-
-    const snapshot = await get(
-      ref(db, "general/settings")
-    );
-
-    if (!snapshot.exists()) return;
-
-    const settings = snapshot.val();
-
-    // Hero Image
-    if (settings.profileImage) {
-      document.getElementById("heroImage").src =
-        settings.profileImage;
-    }
-
-    // CV Download
-    if (settings.cvFile) {
-   document.getElementById("downloadResumeBtn").href =
-      settings.cvFile;
-         cvBtn.setAttribute("download", "Swarnamali_Dassanayake_CV.pdf");
-    }
-
-    // Social Links
-    if (settings.whatsapp) {
-      document.getElementById("whatsappBtn").href =
-        settings.whatsapp;
-    }
-
-    if (settings.github) {
-      document.getElementById("githubBtn").href =
-        settings.github;
-    }
-
-    if (settings.linkedin) {
-      document.getElementById("linkedinBtn").href =
-        settings.linkedin;
-    }
-
-    if (settings.facebook) {
-      document.getElementById("facebookBtn").href =
-        settings.facebook;
-    }
-
-  } catch (error) {
-    console.error("Settings Load Error:", error);
-  }
-}
