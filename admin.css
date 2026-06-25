@@ -81,7 +81,7 @@ select:focus {
 /* Buttons */
 button,
 .modal-header a  {
-   padding: 0.8rem 1.2rem;
+   padding: 0.5rem 0.8rem;
     border-radius: 999px;
 
     background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
@@ -197,24 +197,44 @@ label {
 }
 
 /* Table */
+.table-container {
+    width: 102%;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    overflow-x: hidden;
+}
+
 table {
     width: 100%;
+    table-layout: fixed; 
     border-collapse: collapse;
-    margin-top: 10px;
     color: var(--white);
 }
 
-table th {
+table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
     background: var(--black);
     padding: 0.8rem;
     text-align: left;
     border: 1px solid var(--gray);
     font-weight: var(--font-bold);
+
+        word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 table td {
     border: 1px solid var(--gray);
     padding: 0.8rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 table tr:hover {
@@ -223,18 +243,35 @@ table tr:hover {
 
 table th:last-child,
 table td:last-child {
-    width: 1%;
-    white-space: nowrap;
     text-align: center;
+    white-space: nowrap;
+    padding: 0.1rem;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 999px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--blue);
 }
 
 /* Table Button */
 table button {
-    padding: 0.3rem 0.4rem;
+  padding: 0.2rem 0.2rem;
     border-radius: 999px;
-
     border: none;
     cursor: pointer;
+
 
     font-size: var(--font-small);
     font-weight: var(--font-bold);
@@ -247,7 +284,7 @@ table button {
 
 table button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 12px var(--purple);
+    box-shadow: 0 0 2px var(--purple);
 }
 
 /* ========== LOGIN ========== */
