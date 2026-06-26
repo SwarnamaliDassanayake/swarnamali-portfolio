@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Swarnamali Dassanayake - Admin</title>
+  <link rel="icon" type="image/png" href="assets/admin.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Merienda:wght@300..900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- Styles-->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+  <!-- ================= LOGIN POPUP ================= -->
+  <div id="loginOverlay">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+
+      <button onclick="login()">Login</button>
+
+      <p id="error"></p>
+    </div>
+  </div>
+
+  <!-- ================= ADMIN PANEL ================= -->
+  <main id="admin" style="display:none;">
+
+    <header>
+      <h1>Swarnamali Dassanayake - Admin Dashboard</h1>
+    </header>
+
+    <!-- ================= GENERAL SETTINGS ================= -->
+    <section class="general-section">
+      <h2>General Settings</h2>
+
+      <form id="generalSettingsForm">
+
+        <label id="lastupdated"></label>
+
+        <!-- Image & CV Preview -->
+        <div class="input-row">
+
+          <img id="profilePreview" src="" alt="Profile Preview" class="image-preview" />
+          <button type="button" id="openCVBtn">
+            <span class="material-icons">description</span>
+            Resume
+          </button>
+
+        </div>
+
+        <!-- Personal Details -->
+        <label for="profileImage">Profile Image (1:1 Ratio)</label>
+        <input type="file" id="profileImage" accept="image/*">
+
+        <label for="cvFile">Upload CV</label>
+        <input type="text" id="cvFile" placeholder="Google drive link">
+
+        <label for="whatsapp">WhatsApp Profile URL</label>
+        <input type="text" id="whatsapp" placeholder="WhatsApp profile URL">
+
+        <label for="facebook">Facebook Profile URL</label>
+        <input type="text" id="facebook" placeholder="Facebook profile URL">
+
+        <label for="linkedin">LinkedIn Profile URL</label>
+        <input type="text" id="linkedin" placeholder="LinkedIn profile URL">
+
+        <label for="github">GitHub Profile URL</label>
+        <input type="text" id="github" placeholder="GitHub profile URL">
+
+        <label for="adminMail">Admin Mail</label>
+        <input type="text" id="adminMail" placeholder="Enter admin mail">
+
+        <label for="adminPassword">Admin Password</label>
+        <input type="text" id="adminPassword" placeholder="Enter admin password">
+
+        <button type="button" id="saveGeneralSettings">
+          save Settings
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section>
+
+      <h2>Projects</h2>
+
+      <div class="projects-grid">
+
+        <!-- Project Details -->
+        <div class="projects-form-column">
+
+          <form id="projectForm">
+
+            <label>Category</label>
+            <select id="category">
+              <option>UI Design</option>
+              <option>Web App</option>
+              <option>Mobile App</option>
+              <option>Software System</option>
+              <option>Database</option>
+              <option>Robotics</option>
+            </select>
+
+            <label>Project Title</label>
+            <input type="text" id="title" placeholder="Enter project title">
+
+            <label>Subtitle</label>
+            <input type="text" id="subtitle" placeholder="Enter short subtitle">
+
+            <label>Description</label>
+            <textarea id="description" placeholder="Full project description"></textarea>
+
+            <div class="demo-section">
+
+              <div class="input-row">
+                <label>Demo Files</label>
+
+                <button type="button" onclick="addDemo()">
+                  <span class="material-icons">add</span>
+                </button>
+              </div>
+
+              <div id="demoContainer"></div>
+
+            </div>
+
+            <br>
+
+            <label>Features</label>
+
+            <div class="input-row">
+              <input type="text" id="featureInput" placeholder="Enter feature">
+              <button type="button" onclick="addFeature()">
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+
+            <ul id="featureList"></ul>
+
+            <br>
+
+            <label>Technologies</label>
+
+            <div class="input-row">
+              <input type="text" id="techInput" placeholder="Enter technology">
+              <button type="button" onclick="addTech()">
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+            <ul id="techList"></ul>
+
+            <br>
+
+            <button type="button" onclick="saveProject()">
+              Save Project
+            </button>
+
+          </form>
+
+
+        </div>
+
+        <!-- Projects Table -->
+        <div class="projects-list-column">
+
+          <h3>Project List</h3>
+
+          <div id="projectList" class="table-container"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= SKILLS SECTION ================= -->
+    <section class="section">
+      <h2>Skills Section</h2>
+
+      <!-- Skill Details -->
+      <div class="input-row">
+        <select id="skillCategory">
+          <option value="Tools">Tools & Environmental</option>
+          <option value="UI Design">UI/UX Design & Development</option>
+          <option value="Backend">Backend & Programming</option>
+          <option value="Database">Database Management</option>
+          <option value="Smart Dev">Smart Development Skills</option>
+        </select>
+
+        <button type="button" onclick="resetSkills()">
+          <span class="material-icons">refresh</span>
+        </button>
+      </div>
+
+      <div class="input-row">
+        <input type="text" id="skillName" placeholder="Skill name">
+
+        <input type="number" id="skillLevel" placeholder="Level (%)" min="0" max="100">
+
+        <button type="button" onclick="addSkill()">
+          <span class="material-icons">check</span>
+        </button>
+
+      </div>
+
+      <!-- Skills Table -->
+      <div class="skills-list">
+        <h3>Skills List</h3>
+        <div id="skillList" class="table-container"></div>
+      </div>
+
+    </section>
+
+    <!-- ================= EDUCATION SECTION ================= -->
+    <section>
+      <h2>Education Section</h2>
+
+      <!-- Education Details -->
+      <div class="input-row">
+        <input type="file" id="edu-image" accept="image/*">
+        <img id="eduPreview" src="" alt="Education Preview" class="image-preview" style="display: none;" />
+      </div>
+      <div class="input-row">
+        <input type="text" id="edu-title" placeholder="Education Title">
+      </div>
+      <div class="input-row">
+        <input type="text" id="edu-institute" placeholder="Institute Name">
+      </div>
+      <div class="input-row">
+        <input type="text" id="edu-year" placeholder="Year (e.g. 2022 - 2026)">
+      </div>
+      <div class="input-row">
+        <textarea id="edu-description" placeholder="Description"></textarea>
+      </div>
+
+      <div class="input-row">
+        <button type="button" onclick="saveEducation()">
+          Save Education
+        </button>
+      </div>
+
+      <!-- Education Table -->
+      <div class="skills-list">
+        <h3>Education List</h3>
+        <div id="educationList" class="table-container"></div>
+      </div>
+
+    </section>
+
+    <!-- ================= EXPERIENCE SECTION ================= -->
+    <section>
+
+      <h2>Experience Section</h2>
+
+      <!-- Experience Details -->
+      <div class="input-row">
+        <input type="text" id="exp-title" placeholder="Job Title">
+        <input type="text" id="exp-year" placeholder="Year (e.g. 2024 - Present)">
+      </div>
+
+      <div class="input-row">
+        <input type="text" id="exp-company" placeholder="Company Name">
+        <input type="url" id="exp-link" placeholder="Official Website Link">
+      </div>
+
+      <div class="input-row">
+        <input type="text" id="exp-tech" placeholder="Technology (HTML, CSS, Java...)">
+        <button type="button" onclick="addTechnology()">
+          <span class="material-icons">add</span>
+        </button>
+      </div>
+
+      <div id="technologyList" class="tag-list"></div>
+
+      <div class="input-row">
+        <input type="text" id="exp-point" placeholder="Experience Point">
+        <button type="button" onclick="addExperiencePoint()">
+          <span class="material-icons">add</span>
+        </button>
+      </div>
+
+      <div id="experiencePointList" class="tag-list"></div>
+
+      <div class="input-row">
+        <textarea id="exp-description" placeholder="Description"></textarea>
+      </div>
+
+      <div class="input-row">
+        <button type="button" onclick="saveExperience()">
+          Save Experience
+        </button>
+      </div>
+
+      <!-- Experience Table -->
+      <div class="skills-list">
+        <h3>Experience List</h3>
+        <div id="experienceList" class="table-container"></div>
+      </div>
+
+    </section>
+
+    <!-- ================= UNIVERSAL PREVIEW MODAL ================= -->
+    <div id="previewModal" class="modal">
+
+      <div class="preview-modal-content">
+
+        <div class="modal-header">
+
+          <a id="modalDownloadBtn" class="download-btn" download>
+            <span class="material-icons">download</span>
+          </a>
+
+          <button id="closeModalBtn">
+            <span class="material-icons">close</span>
+          </button>
+
+        </div>
+
+        <!-- Viewer container (NOT iframe anymore) -->
+        <div id="modalViewer" class="modal-frame"></div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfehi3batpF-DlyvI-HVtJoBBooXuC8sc",
+      authDomain: "portfolio-mali.firebaseapp.com",
+      databaseURL: "https://portfolio-mali-default-rtdb.firebaseio.com",
+      projectId: "portfolio-mali",
+      storageBucket: "portfolio-mali.firebasestorage.app",
+      messagingSenderId: "767019931608",
+      appId: "1:767019931608:web:908407842d42c01bbb84ad"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();   // MUST be global
+  </script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="admin.js"></script>
+</body>
+
+</html>
