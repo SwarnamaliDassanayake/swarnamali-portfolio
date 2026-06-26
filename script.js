@@ -273,21 +273,3 @@ function initFullscreen(card) {
         closeBtn.style.display = "none";
     });
 }
-
-// ================= FOOTER ADMIN LINK FIX =================
-document.addEventListener("DOMContentLoaded", () => {
-
-    const adminLink = document.querySelector(".copyright a[href='admin.html']");
-
-    if (adminLink) {
-
-        adminLink.addEventListener("click", function (e) {
-            e.stopPropagation(); // prevent navbar / other handlers
-
-            // GitHub Pages safe navigation
-            const basePath = "/swarnamali-portfolio/";
-
-            window.location.href = basePath + "admin.html";
-        });
-    }
-});

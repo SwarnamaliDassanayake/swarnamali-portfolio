@@ -19,46 +19,44 @@ loadGeneralSettings();
 
 async function loadGeneralSettings() {
   try {
-
-    const snapshot = await get(
-      ref(db, "general/settings")
-    );
+    const snapshot = await get(ref(db, "general/settings"));
 
     if (!snapshot.exists()) return;
 
     const settings = snapshot.val();
 
-    // Hero Image
+    // Hero image
     if (settings.profileImage) {
-      document.getElementById("heroImage").src =
-        settings.profileImage;
+      document.getElementById("heroImage").src = settings.profileImage;
     }
 
-    // CV Download
+    // CV download
     if (settings.cvFile) {
-   document.getElementById("downloadResumeBtn").href =
-      settings.cvFile;
+      document.getElementById("downloadResumeBtn").href = settings.cvFile;
     }
 
-    // Social Links
+    // Helper function to update all links of same type
+    function setLinks(selector, value) {
+      document.querySelectorAll(selector).forEach(el => {
+        el.href = value;
+      });
+    }
+
+    // Social links (ALL instances)
     if (settings.whatsapp) {
-      document.getElementById("whatsappBtn").href =
-        settings.whatsapp;
+      setLinks(".whatsappBtn", settings.whatsapp);
     }
 
     if (settings.github) {
-      document.getElementById("githubBtn").href =
-        settings.github;
+      setLinks(".githubBtn", settings.github);
     }
 
     if (settings.linkedin) {
-      document.getElementById("linkedinBtn").href =
-        settings.linkedin;
+      setLinks(".linkedinBtn", settings.linkedin);
     }
 
     if (settings.facebook) {
-      document.getElementById("facebookBtn").href =
-        settings.facebook;
+      setLinks(".facebookBtn", settings.facebook);
     }
 
   } catch (error) {
@@ -250,7 +248,6 @@ function createProjectCard(title, data) {
   return card;
 }
 
-
 // ================= INIT CARD =================
 function initProjectCard(projectMedia) {
 
@@ -288,4 +285,3 @@ function initProjectCard(projectMedia) {
   carousels.forEach(c => initCarousel(c));
   initFullscreen(projectMedia);
 }
-

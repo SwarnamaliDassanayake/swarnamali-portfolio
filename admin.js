@@ -306,112 +306,6 @@ function loadGeneralSettingsToUI() {
 
 window.addEventListener("load", loadGeneralSettingsToUI);
 
-// ================= PROJECT SAVE =================
-async function saveProject() {
-
-    const title = document.getElementById("title").value.trim();
-    const category = document.getElementById("category").value.trim();
-    const subtitle = document.getElementById("subtitle").value.trim();
-    const description = document.getElementById("description").value.trim();
-
-    if (!title || !category) {
-        alert("Title and Category required!");
-        return;
-    }
-
-    const folder = `portfolio_upload/${category}/${title}`;
-
-    let demoData = [];
-
-    try {
-
-        const demoBlocks = document.querySelectorAll("#demoContainer > div");
-
-        let totalFiles = 0;
-        let uploadedFiles = 0;
-
-        demoBlocks.forEach(block => {
-            block.querySelectorAll(".demoFileContainer div").forEach(row => {
-                const file = row.querySelector(".demoFileUpload")?.files[0];
-                if (file) totalFiles++;
-            });
-        });
-
-        for (let block of demoBlocks) {
-
-            const previewName = block.querySelector(".demoPreviewInput")?.value || "";
-            const files = [];
-
-            const fileRows = block.querySelectorAll(".demoFileContainer div");
-
-            for (let row of fileRows) {
-
-                const name = row.querySelector(".demoFileName")?.value || "";
-                const file = row.querySelector(".demoFileUpload")?.files[0];
-
-                if (file) {
-
-                    const res = await uploadToCloudinary(file, folder);
-
-                    uploadedFiles++;
-                    const percent = totalFiles
-                        ? Math.round((uploadedFiles / totalFiles) * 100)
-                        : 100;
-
-                    document.title = `Uploading... ${percent}%`;
-
-                    files.push({
-                        name,
-                        url: res.secure_url,
-                        type: file.type
-                    });
-                }
-            }
-
-            demoData.push({ previewName, files });
-        }
-
-    } catch (err) {
-        console.error(err);
-        alert("Upload failed!");
-        return;
-    }
-
-    let featuresObj = {};
-    features.forEach((f, i) => featuresObj[`feature_${i + 1}`] = f);
-
-    let techObj = {};
-    technologies.forEach((t, i) => techObj[`tech_${i + 1}`] = t);
-
-    let demoObj = {};
-
-    demoData.forEach(demo => {
-        let fileObj = {};
-        demo.files.forEach(file => {
-            fileObj[file.name || "file"] = file.url;
-        });
-        demoObj[demo.previewName || "untitled"] = fileObj;
-    });
-
-    const safeCategory = cleanKey(category);
-    const safeTitle = cleanKey(title);
-
-    await db.ref(`projects/${safeCategory}/${safeTitle}`).set({
-        subtitle,
-        description,
-        features: featuresObj,
-        technologies: techObj,
-        demo: demoObj,
-        createdAt: new Date().toISOString()
-    });
-
-    alert("✅ PROJECT SAVED SUCCESSFULLY");
-
-    clearProjectForm();
-
-    loadProjectsToTable();
-}
-
 // ================= CLEAR PROJECT FORM =================
 function clearProjectForm() {
     features = [];
@@ -569,7 +463,7 @@ async function deleteProject(category, title) {
     }
 }
 
-// ================= EDIT PROJECT (FIXED DEMO KEY STRUCTURE) =================
+// ================= EDIT PROJECT =================
 async function editProject(category, title) {
 
     try {
@@ -632,7 +526,7 @@ async function editProject(category, title) {
             });
         }
 
-        // ================= DEMO (FIXED KEY HANDLING) =================
+        // ================= DEMO  =================
         if (data.demo) {
 
             Object.keys(data.demo).forEach(demoKey => {
@@ -657,6 +551,7 @@ async function editProject(category, title) {
                     </div>
                 `;
 
+                // Load Old Demo List
                 const fileContainer = demoBlock.querySelector(".demoFileContainer");
 
                 const files = data.demo[demoKey];
@@ -675,14 +570,15 @@ async function editProject(category, title) {
            value="${fileKey}"
            style="flex:1;">
 
-    <a href="javascript:void(0)"
-       class="demoFileLink"
-       title="Open File"
-       onclick="openPreviewModal('${files[fileKey]}')">
+   <a href="javascript:void(0)"
+   class="demoFileLink"
+   data-url="${files[fileKey]}"
+   title="Open File"
+   onclick="openPreviewModal('${files[fileKey]}')">
 
-         <span class="material-icons">preview</span>
+    <span class="material-icons">preview</span>
 
-    </a>
+</a>
 `;
                     fileContainer.appendChild(row);
                 });
@@ -696,6 +592,161 @@ async function editProject(category, title) {
     } catch (err) {
         console.error("Edit error:", err);
     }
+}
+
+// ================= PROJECT SAVE =================
+async function saveProject() {
+
+    const title = document.getElementById("title").value.trim();
+    const category = document.getElementById("category").value.trim();
+    const subtitle = document.getElementById("subtitle").value.trim();
+    const description = document.getElementById("description").value.trim();
+
+    if (!title || !category) {
+        alert("Title and Category required!");
+        return;
+    }
+
+    const folder = `portfolio_upload/${category}/${title}`;
+
+    let demoData = [];
+
+    try {
+
+        const demoBlocks = document.querySelectorAll("#demoContainer > div");
+
+        let totalFiles = 0;
+        let uploadedFiles = 0;
+
+        // Count only NEW files
+        demoBlocks.forEach(block => {
+            block.querySelectorAll(".demoFileContainer > div").forEach(row => {
+                const file = row.querySelector(".demoFileUpload")?.files[0];
+                if (file) totalFiles++;
+            });
+        });
+
+        // ================= DEMO =================
+        for (const block of demoBlocks) {
+
+            const previewName =
+                block.querySelector(".demoPreviewInput")?.value.trim() || "untitled";
+
+            let files = [];
+
+            const fileRows = block.querySelectorAll(".demoFileContainer > div");
+
+            for (const row of fileRows) {
+
+                const name =
+                    row.querySelector(".demoFileName")?.value.trim() || "file";
+
+                const uploadInput = row.querySelector(".demoFileUpload");
+                const newFile = uploadInput?.files[0];
+
+                const previewLink = row.querySelector(".demoFileLink");
+
+                // ================= NEW FILE =================
+                if (newFile) {
+
+                    const res = await uploadToCloudinary(newFile, folder);
+
+                    uploadedFiles++;
+
+                    const percent = totalFiles
+                        ? Math.round((uploadedFiles / totalFiles) * 100)
+                        : 100;
+
+                    document.title = `Uploading... ${percent}%`;
+
+                    files.push({
+                        name: name,
+                        url: res.secure_url
+                    });
+
+                }
+
+                // ================= OLD FILE =================
+                else if (previewLink && previewLink.dataset.url) {
+
+                    files.push({
+                        name: name,
+                        url: previewLink.dataset.url
+                    });
+
+                }
+
+            }
+
+            demoData.push({
+                previewName,
+                files
+            });
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
+        alert("Upload failed!");
+        return;
+
+    }
+
+    // ================= FEATURES =================
+    let featuresObj = {};
+
+    features.forEach((f, i) => {
+        featuresObj[`feature_${i + 1}`] = f;
+    });
+
+    // ================= TECHNOLOGIES =================
+    let techObj = {};
+
+    technologies.forEach((t, i) => {
+        techObj[`tech_${i + 1}`] = t;
+    });
+
+    // ================= DEMO OBJECT =================
+    let demoObj = {};
+
+    demoData.forEach(demo => {
+
+        let fileObj = {};
+
+        demo.files.forEach(file => {
+            fileObj[file.name] = file.url;
+        });
+
+        demoObj[demo.previewName] = fileObj;
+
+    });
+
+    const safeCategory = cleanKey(category);
+    const safeTitle = cleanKey(title);
+
+    // ================= SAVE =================
+    await db.ref(`projects/${safeCategory}/${safeTitle}`).set({
+
+        subtitle,
+        description,
+
+        features: featuresObj,
+        technologies: techObj,
+        demo: demoObj,
+
+        createdAt: new Date().toISOString()
+
+    });
+
+    document.title = "Admin";
+
+    alert("✅ PROJECT SAVED SUCCESSFULLY");
+
+    clearProjectForm();
+
+    loadProjectsToTable();
+
 }
 
 // ================= RESET SKILL =================
@@ -739,7 +790,6 @@ function addSkill() {
             alert(error.message);
         });
 }
-
 
 // ================= LOAD SKILLS INTO TABLE =================
 async function loadSkillsToTable() {
