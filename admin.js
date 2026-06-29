@@ -892,11 +892,7 @@ document.getElementById("edu-image").addEventListener("change", function () {
     const file = this.files[0];
     const preview = document.getElementById("eduPreview");
 
-    if (!file) {
-        preview.src = "";
-        preview.style.display = "none";
-        return;
-    }
+    if (!file) return;
 
     const reader = new FileReader();
 
@@ -912,7 +908,11 @@ document.getElementById("edu-image").addEventListener("change", function () {
 // ================= SAVE EDUCATION =================
 async function saveEducation() {
 
-    const imageFile = document.getElementById("edu-image").files[0];
+    const imageInput = document.getElementById("edu-image");
+    const imageFile = imageInput.files[0];
+
+    const preview = document.getElementById("eduPreview");
+
     const title = document.getElementById("edu-title").value.trim();
     const institute = document.getElementById("edu-institute").value.trim();
     const year = document.getElementById("edu-year").value.trim();
@@ -925,9 +925,27 @@ async function saveEducation() {
 
     let imageUrl = "";
 
+    // Upload new image
     if (imageFile) {
-        const upload = await uploadToCloudinary(imageFile, "portfolio_upload/edu");
+
+        const upload = await uploadToCloudinary(
+            imageFile,
+            "portfolio_upload/edu"
+        );
+
         imageUrl = upload.secure_url;
+
+    } else {
+
+        // No new image selected -> keep existing image
+        if (
+            preview.src &&
+            preview.src !== window.location.href &&
+            !preview.src.startsWith("data:")
+        ) {
+            imageUrl = preview.src;
+        }
+
     }
 
     const key = cleanKey(title);
