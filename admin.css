@@ -26,8 +26,8 @@ select:focus {
 
 /* Buttons */
 button,
-.modal-header a  {
-   padding: 0.5rem 0.8rem;
+.modal-header a {
+    padding: 0.5rem 0.8rem;
     border-radius: 999px;
 
     background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
@@ -42,7 +42,7 @@ button,
 
 button:hover,
 button:Active,
-.modal-header a :hover{
+.modal-header a :hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px var(--purple);
 }
@@ -117,7 +117,7 @@ select option {
     flex: 1;
 }
 
- textarea {
+textarea {
     resize: vertical;
 }
 
@@ -136,7 +136,7 @@ li {
     padding: 0.5rem;
     padding: 1rem;
 }
- 
+
 label {
     color: var(--white-shadow);
     margin-top: 5px;
@@ -154,7 +154,7 @@ label {
 
 table {
     width: 100%;
-    table-layout: fixed; 
+    table-layout: fixed;
     border-collapse: collapse;
     color: var(--white);
 }
@@ -170,7 +170,7 @@ table thead th {
     border: 1px solid var(--gray);
     font-weight: var(--font-bold);
 
-        word-wrap: break-word;
+    word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
 }
@@ -213,7 +213,7 @@ table td:last-child {
 
 /* Table Button */
 table button {
-  padding: 0.2rem 0.2rem;
+    padding: 0.2rem 0.2rem;
     border-radius: 999px;
     border: none;
     cursor: pointer;
@@ -368,7 +368,7 @@ table button:hover {
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
 
-        section {
+    section {
         margin: 1rem !important;
     }
 
