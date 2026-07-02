@@ -171,9 +171,15 @@
 
             <br>
 
-            <button type="button" onclick="saveProject()">
-              Save Project
-            </button>
+              <div class="input-row">
+              <button type="button" class="save-btn" onclick="saveProject()">
+                Save Project
+              </button>
+
+              <button type="button" class="refresh-btn" onclick="clearProjectForm()">
+                <span class="material-icons">refresh</span>
+              </button>
+            </div>
 
           </form>
 
@@ -257,6 +263,9 @@
         <button type="button" onclick="saveEducation()">
           Save Education
         </button>
+        <button type="button" class="refresh-btn" onclick="clearEducationForm()">
+          <span class="material-icons">refresh</span>
+        </button>
       </div>
 
       <!-- Education Table -->
@@ -308,6 +317,9 @@
       <div class="input-row">
         <button type="button" onclick="saveExperience()">
           Save Experience
+        </button>
+        <button type="button" class="refresh-btn" onclick="clearExperienceForm()">
+          <span class="material-icons">refresh</span>
         </button>
       </div>
 
