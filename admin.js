@@ -1083,8 +1083,6 @@ async function editEducation(key) {
 
     // store key for update mode
     window.editEduKey = key;
-
-    alert("Now update and click SAVE again");
 }
 
 // ================= ADD EXPERIENCE TECHNOLOGY =================
@@ -1339,8 +1337,6 @@ async function editExperience(key) {
     }
 
     window.editExpKey = key;
-
-    alert("Now update and click SAVE again");
 }
 
 // ================= CLOUDINARY VIDEO FIX =================
