@@ -87,30 +87,6 @@ Images and videos are stored using Cloudinary, while structured content is manag
 
 ---
 
-## 💻 Local Setup
-
-Clone the repository:
-
-```bash
-git clone https://github.com/<your-username>/swarnamali-portfolio.git
-```
-
-Open the project folder:
-
-```bash
-cd swarnamali-portfolio
-```
-
-Run with any local server.
-
-Examples:
-
-* Live Server (VS Code)
-* XAMPP
-* Firebase Hosting
-
----
-
 ## 📄 License
 
 This project is released for portfolio and educational purposes.
